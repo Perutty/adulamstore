@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Adulam Store</title>
+    <link rel="stylesheet" th:href="@{/css/stylelogin.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
+            <h2 class="text-center text-dark mt-5">ADULAM STORE</h2>
+            <div class="card my-5">
+    
+              <form action="#" class="card-body cardbody-color p-lg-5" th:action="@{/admin/login}" method="post">
+    
+                <div class="mb-3">
+                  <input type="text" class="form-control" name="email" aria-describedby="emailHelp"
+                    placeholder="Correo" required="required">
+                </div>
+                <div class="mb-3">
+                  <input type="password" class="form-control" name="password" placeholder="Contraseña" required="required">
+                </div>
+                <div class="text-center"><button type="submit" class="btn btn-color px-5 mb-5 w-100">Iniciar Sesión</button></div>
+                <div id="emailHelp" class="form-text text-center mb-5 text-dark">¿No estás registrado?
+                <a href="/admin/show"><br>Hazlo ahora</a>
+                </div>
+              </form>
+              <div style="margin-top:-15%" class="alert alert-danger" th:if="${loginError != null }">
+						<label th:text="${loginError}"></label>
+				</div>           
+			</div>
+          </div>
+        </div>
+      </div>
+</body>
+</html>
