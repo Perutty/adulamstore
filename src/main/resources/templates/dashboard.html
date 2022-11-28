@@ -220,9 +220,9 @@
 		</div>
 		<div class="form-group">
 		    <label>Categoría</label>
-		    <select class="input-select">
+		    <select class="input-select" name="categoria">
 		    <form th:each="cat: ${categoria}">
-				<option th:value="${cat.id}" name="categoria" th:text="${cat.nombre}"></option>
+				<option th:value="${cat.id}" th:text="${cat.nombre}"></option>
 				</form>
 			</select>
 		</div>
