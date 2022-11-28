@@ -149,7 +149,7 @@
 								<div>
 									<label for="brand-1">
 										<span></span>
-										<a th:href="@{/adulamstore/list}" th:text="${marca.marca}"></a>
+										<a th:href="@{/adulamstore/listMarca/{marca}(marca=${marca.marca})}" th:text="${marca.marca}"></a>
 										<small></small>
 									</label>
 								</div><br>

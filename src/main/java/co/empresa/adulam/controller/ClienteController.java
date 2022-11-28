@@ -87,12 +87,26 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/list/{id}")
-	public String listProduct(@PathVariable("id") Integer id, Model model) {
+	public String listProductId(@PathVariable("id") Integer id, Model model) {
 		List<Producto> listProductos = productoService.getAll();
 		List<Categoria> listCategoria = categoriaService.getAll();
 		listMostrar.clear();
 		listProductos.forEach((producto)->{
 			if(producto.getId_categoria() == id)
+				listMostrar.add(producto);
+		});
+		model.addAttribute("categoria", listCategoria);
+		model.addAttribute("listProducto", listMostrar);
+		return "adulamstore";
+	}
+	
+	@GetMapping("/listMarca/{marca}")
+	public String listProductMarca(@PathVariable("marca") String marca, Model model) {
+		List<Producto> listProductos =  productoService.getAll();
+		List<Categoria> listCategoria = categoriaService.getAll();
+		listMostrar.clear();
+		listProductos.forEach((producto)->{
+			if(producto.getMarca() == marca)
 				listMostrar.add(producto);
 		});
 		model.addAttribute("categoria", listCategoria);
