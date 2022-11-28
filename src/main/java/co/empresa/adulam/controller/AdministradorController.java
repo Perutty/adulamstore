@@ -36,10 +36,9 @@ public class AdministradorController {
 		if(admin != null)
 		{
 			request.getSession().setAttribute("admin_id", admin.getId());
-			model.addAttribute("admin", admin);
 			return "redirect:/producto/list";
 		}else {
-			att.addFlashAttribute("loginError", "Usuario o contraseña incorrecta");
+			att.addFlashAttribute("loginError", "Usuario o contraseÃ±a incorrecta");
 			return "redirect:/admin/";
 			}
 	}
@@ -53,7 +52,7 @@ public class AdministradorController {
 	@PostMapping("/save")
 	public String insertAdmin(RedirectAttributes att, Administrador admin, Model model) {
 		administradorService.save(admin);
-		att.addFlashAttribute("accion", "Administrador registrado con éxito!");
+		att.addFlashAttribute("accion", "Administrador registrado con Ã©xito!");
 		return "redirect:/admin/";
 	}
 }

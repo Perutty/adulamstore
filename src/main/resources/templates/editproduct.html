@@ -17,7 +17,9 @@
 	 
 	 <div id="sidebar">
 	    <div class="sidebar-header">
-		   <h3><span>Adulam Store - Dashboard Admin</span></h3>
+		   <form th:each="adm: ${admin}" action="#">
+		   	<h3><span>Adulam Store</span><br><span th:text="${adm.nombre}"></span></h3>
+		   </form>
 		</div>
 		<ul class="list-unstyled component m-0">
 		  <li class="active">
@@ -85,16 +87,6 @@
 					     <div class="xp-profilebar text-right">
 						    <nav class="navbar p-0">
 							   <ul class="nav navbar-nav flex-row ml-auto">
-							   <li class="dropdown nav-item active">
-							     <a class="nav-link" href="#" data-toggle="dropdown">
-								  <span class="material-icons">notifications</span>
-								  <span class="notification">1</span>
-								 </a>
-								  <ul class="dropdown-menu">
-								     <li><a href="#">You Have 1 New Messages</a></li>
-								  </ul>
-							   </li>
-							   
 							   <li class="dropdown nav-item">
 							     <a class="nav-link" href="#" data-toggle="dropdown">
 								  <i class="material-icons">power_settings_new</i>
