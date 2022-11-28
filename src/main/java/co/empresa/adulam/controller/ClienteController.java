@@ -87,7 +87,9 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/list/{id}")
-	public String listProductId(@PathVariable("id") Integer id, Model model) {
+	public String listProductId(HttpServletRequest request, HttpSession session, 
+								@PathVariable("id") Integer id, Model model) {
+		request.getSession().setAttribute("cat_id", id);
 		List<Producto> listProductos = productoService.getAll();
 		List<Categoria> listCategoria = categoriaService.getAll();
 		listMostrar.clear();
@@ -101,12 +103,14 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/listMarca/{marca}")
-	public String listProductMarca(@PathVariable("marca") String marca, Model model) {
+	public String listProductMarca(HttpServletRequest request, HttpSession session,
+									@PathVariable("marca") String marca, Model model) {
+		int c_id = (int)request.getSession().getAttribute("cat_id");
 		List<Producto> listProductos =  productoService.getAll();
 		List<Categoria> listCategoria = categoriaService.getAll();
 		listMostrar.clear();
 		listProductos.forEach((producto)->{
-			if(producto.getMarca() == marca)
+			if(producto.getId_categoria() == c_id && producto.getMarca() == marca)
 				listMostrar.add(producto);
 		});
 		model.addAttribute("categoria", listCategoria);
