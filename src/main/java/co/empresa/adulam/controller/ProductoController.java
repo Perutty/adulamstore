@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import co.empresa.adulam.model.Categoria;
 import co.empresa.adulam.model.Producto;
+import co.empresa.adulam.services.CategoriaService;
 import co.empresa.adulam.services.ProductoService;
 
 @Controller
@@ -22,13 +24,17 @@ import co.empresa.adulam.services.ProductoService;
 public class ProductoController {
 	
 	@Autowired
-	public ProductoService productoService;
+	private ProductoService productoService;
+	
+	@Autowired
+	private CategoriaService categoriaService;
 	
 	@GetMapping("/list")
 	public String listProduct(HttpServletRequest request, Model model) {
 		List<Producto> listMostrar = productoService.getAll();
-	
+		List<Categoria> listCategoria = categoriaService.getAll();
 		model.addAttribute("producto", listMostrar);
+		model.addAttribute("categoria", listCategoria);
 		return "dashboard";
 	}
 	

@@ -5,6 +5,6 @@ import co.empresa.adulam.model.Producto;
 
 public interface ProductoService extends GenericService<Producto, Integer>{
 	
-	public Producto select(String descripcion);
+	public Producto select(String nombre);
 
 }

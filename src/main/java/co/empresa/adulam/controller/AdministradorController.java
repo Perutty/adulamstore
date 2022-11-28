@@ -22,6 +22,7 @@ public class AdministradorController {
 	@Autowired
 	private AdministradorService administradorService;
 	
+	
 	@GetMapping("/")
 	public String login(Model model) {
 		return "login";

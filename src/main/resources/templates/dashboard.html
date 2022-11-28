@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"	xmlns:th="http://www.thymeleaf.org">
+<html lang="en"	xmlns:th="http://www.thymeleaf.org" 
+				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
   <head>
     <meta charset="utf-8">
        <title>Adulam Store</title>
@@ -144,7 +145,7 @@
 							 <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
 							   <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
 							   <i class="material-icons">&#xE147;</i>
-							   <span>Add New Employees</span>
+							   <span>Agregar producto</span>
 							   </a>
 							 </div>
 					     </div>
@@ -153,7 +154,7 @@
 					   <table class="table table-striped table-hover">
 					      <thead>
 						     <tr>
-							 <th><span class="custom-checkbox">
+							 <th><span class="custom-checkbox"></span>
 							 <input type="checkbox" id="selectAll">
 							 <label for="selectAll"></label></th>
 							 <th>Marca</th>
@@ -216,6 +217,14 @@
 		<div class="form-group">
 		    <label>Cantidad</label>
 			<input type="number" name="cantidad" placeholder="Cantidad" class="form-control" required>
+		</div>
+		<div class="form-group">
+		    <label>Categoría</label>
+		    <select class="input-select">
+		    <form th:each="cat: ${categoria}">
+				<option th:value="${cat.id}" th:text="${cat.nombre}"></option>
+				</form>
+			</select>
 		</div>
 		<div class="form-group">
 		    <label>URL imagen</label>
