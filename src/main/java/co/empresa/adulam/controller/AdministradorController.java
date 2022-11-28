@@ -23,7 +23,7 @@ public class AdministradorController {
 	private AdministradorService administradorService;
 	
 	
-	@GetMapping("/")
+	@GetMapping("")
 	public String login(Model model) {
 		return "login";
 	}
@@ -39,7 +39,7 @@ public class AdministradorController {
 			model.addAttribute("admin", admin);
 			return "redirect:/producto/list";
 		}else {
-			att.addFlashAttribute("loginError", "Usuario o contraseÃ±a incorrecta");
+			att.addFlashAttribute("loginError", "Usuario o contraseña incorrecta");
 			return "redirect:/admin/";
 			}
 	}
@@ -53,7 +53,7 @@ public class AdministradorController {
 	@PostMapping("/save")
 	public String insertAdmin(RedirectAttributes att, Administrador admin, Model model) {
 		administradorService.save(admin);
-		att.addFlashAttribute("accion", "Â¡Administrador registrado con Ã©xito!");
+		att.addFlashAttribute("accion", "Administrador registrado con éxito!");
 		return "redirect:/admin/";
 	}
 }

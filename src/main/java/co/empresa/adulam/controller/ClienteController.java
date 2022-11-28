@@ -34,7 +34,7 @@ public class ClienteController {
     @Autowired
     private CategoriaService categoriaService;
 	
-	private List<Producto> listMostrar = new ArrayList<>();
+	List<Producto> listMostrar = new ArrayList<>();
 
 	
 	@GetMapping("")
@@ -58,7 +58,7 @@ public class ClienteController {
 			model.addAttribute("cliente", cliente);
 			return "redirect:/adulamstore/home";
 		}else {
-			att.addFlashAttribute("loginError", "Usuario o contraseÃ±a incorrecta");
+			att.addFlashAttribute("loginError", "Usuario o contraseña incorrecta");
 			return "redirect:/adulamstore/login";
 			}
 	}
@@ -72,7 +72,7 @@ public class ClienteController {
 	@PostMapping("/save")
 	public String insertClient(RedirectAttributes att, Cliente cliente, Model model) {
 		clienteService.save(cliente);
-		att.addFlashAttribute("accion", "Â¡Te has registrado con Ã©xito!");
+		att.addFlashAttribute("accion", "¡Te has registrado con éxito!");
 		return "redirect:/adulamstore/home";
 	}
 	
@@ -87,30 +87,12 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/list/{id}")
-	public String listProductId(HttpServletRequest request, HttpSession session, 
-								@PathVariable("id") Integer id, Model model) {
-		request.getSession().setAttribute("cat_id", id);
+	public String listProductId(@PathVariable("id") Integer id, Model model) {
 		List<Producto> listProductos = productoService.getAll();
 		List<Categoria> listCategoria = categoriaService.getAll();
 		listMostrar.clear();
 		listProductos.forEach((producto)->{
 			if(producto.getId_categoria() == id)
-				listMostrar.add(producto);
-		});
-		model.addAttribute("categoria", listCategoria);
-		model.addAttribute("listProducto", listMostrar);
-		return "adulamstore";
-	}
-	
-	@GetMapping("/listMarca/{marca}")
-	public String listProductMarca(HttpServletRequest request, HttpSession session,
-									@PathVariable("marca") String marca, Model model) {
-		int c_id = (int)request.getSession().getAttribute("cat_id");
-		List<Producto> listProductos =  productoService.getAll();
-		List<Categoria> listCategoria = categoriaService.getAll();
-		listMostrar.clear();
-		listProductos.forEach((producto)->{
-			if(producto.getId_categoria() == c_id && producto.getMarca() == marca)
 				listMostrar.add(producto);
 		});
 		model.addAttribute("categoria", listCategoria);
