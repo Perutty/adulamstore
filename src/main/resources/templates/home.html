@@ -52,18 +52,17 @@
 						</div>
 						<div class="col-md-6">
 							<div class="header-search">
-								<form>
-									<select class="input-select" type="number">
-										<form th:each="cat: ${categoria}" action="#">
-											<option th:value="${cat.id}" th:text="${cat.nombre}">Categorías</option>
-										</form>
-								    </select>
-								   <input class="input" name="nombre" placeholder="Digite aquí">
-								  <button type="button" class="search-btn">Buscar</button>
+							<form>
+							   <select class="input-select" type="number">
+								<form th:each="cat: ${categoria}" action="#">
+										<option th:value="${cat.id}" th:text="${cat.nombre}">Categorías</option>
 								</form>
+									</select>
+								<input class="input" placeholder="Digite aquí">
+							<button class="search-btn">Buscar</button>
+						</form>
 							</div>
 						</div>
-
 						<div class="col-md-3 clearfix">
 							<div class="header-ctn">
 								
@@ -111,97 +110,31 @@
 				<div id="responsive-nav">
 					<!-- NAV -->
 					<ul class="main-nav nav navbar-nav">
-						<li><a th:href="@{/adulamstore}">INICIO</a></li>
-						<li class="active"><a th:href="@{/adulamstore/list}">CATEGORÍAS</a></li>
+						<li class="active"><a th:href="@{/adulamstore}">INICIO</a></li>
+						<li><a th:href="@{/adulamstore/list}">CATEGORÍAS</a></li>
 					</ul>
 				</div>
 			</div>
 		</nav>
-
-
-		<!-- SECTION -->
-		<div class="section">
-			<!-- container -->
-			<div class="container">
-				<!-- row -->
-				<div class="row">
-					<!-- ASIDE -->
-					<div id="aside" class="col-md-3">
-						<!-- aside Widget -->
-						<div class="aside" >
-							<h3 class="aside-title">Categorías</h3>
-							<div class="checkbox-filter">
-						<form th:each="cat: ${categoria}" action="#">
-								<div>
-									<label for="category-1">
-										<span></span>
-										<a th:href="@{/adulamstore/list/{id}(id=${cat.id})}" th:text="${cat.nombre}"></a>
-										<small></small>
-									</label>
-								</div><br>
-						</form>
-						</div>
-						</div>
-
-						<div class="aside">
-							<h3 class="aside-title">Marcas</h3>
-							<div class="checkbox-filter">
-							<form th:each="producto: ${listProducto}" action="#">
-								<div>
-									<label for="brand-1">
-										<span></span>
-										<a th:href="@{/adulamstore/list}" th:text="${producto.marca}"></a>
-										<small></small>
-									</label>
-								</div><br>
-								</form>
-							</div>
-						</div>
-						</div>
-					
-					<!-- STORE -->
-					<div id="store" class="col-md-9">
-						<!-- store products -->
-						<div class="row">
-							<form th:each="producto: ${listProducto}" action="#">
-							<!-- product -->
-							<div class="col-md-4 col-xs-6">
-								<div class="product">
-									<div class="product-img" style="text-align:center">
-										<img th:src="${producto.imagen}" style="width:50%;height:150px;">
-									</div>
-									<div class="product-body">
-										<h3 class="product-name" th:text="${producto.nombre}"></h3>
-										<h4 class="product-price" th:text="${producto.precio}"></h4>
-										<div class="product-btns">
-											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Ver detalles</span></button>
-										</div>
-									</div>
-									<div class="add-to-cart">
-										<button class="add-to-cart-btn"><i class="fa fa-shopping-cart"></i>Añadir al carrito</button>
-									</div>
-								</div>
-							</div>
-					</form>
-					</div>
-						<div class="store-filter clearfix">
-							<span class="store-qty">Showing 20-100 products</span>
-							<ul class="store-pagination">
-								<li class="active">1</li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#"><i class="fa fa-angle-right"></i></a></li>
-							</ul>
-						</div>
-					<!-- /STORE -->
+		<div class="container-slider">
+			<div class="slider" id="slider">
+				<div class="slider_section">
+					<img th:src="@{https://i.imgur.com/BTImV57.jpg}">
 				</div>
-				<!-- /row -->
 			</div>
 		</div>
-<br><br>
-</div>
-<footer id="footer" style="position:relative;bottom:0;width:100%">
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<footer id="footer" style="position:absolute;bottom:0;width:100%">
 				<div class="container">
 						<div class="col-md-12 text-center">
 							<span class="copyright" style="color:white">

@@ -39,7 +39,9 @@ public class ClienteController {
 	
 	@GetMapping("")
 	public String store(Model model) {
-		return "redirect:/adulamstore/list";
+		List<Categoria> listCategoria = categoriaService.getAll();
+		model.addAttribute("categoria", listCategoria);
+		return "home";
 	}
 	
 	@GetMapping("/login")
