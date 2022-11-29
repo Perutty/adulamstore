@@ -25,7 +25,7 @@ public class AdministradorController {
 	
 	@GetMapping("")
 	public String login(Model model) {
-		return "login";
+		return "loginadmin";
 	}
 	
 	@PostMapping("/login")

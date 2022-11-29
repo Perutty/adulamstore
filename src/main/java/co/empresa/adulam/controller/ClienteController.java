@@ -56,9 +56,10 @@ public class ClienteController {
 		{
 			request.getSession().setAttribute("cliente_id", cliente.getId());
 			model.addAttribute("cliente", cliente);
-			return "redirect:/adulamstore/home";
+			att.addFlashAttribute("cliente", cliente.getNombre());
+			return "redirect:/adulamstore/list";
 		}else {
-			att.addFlashAttribute("loginError", "Usuario o contraseña incorrecta");
+			att.addFlashAttribute("loginError", "Usuario o contraseÃ±a incorrecta");
 			return "redirect:/adulamstore/login";
 			}
 	}
@@ -72,8 +73,8 @@ public class ClienteController {
 	@PostMapping("/save")
 	public String insertClient(RedirectAttributes att, Cliente cliente, Model model) {
 		clienteService.save(cliente);
-		att.addFlashAttribute("accion", "¡Te has registrado con éxito!");
-		return "redirect:/adulamstore/home";
+		att.addFlashAttribute("accion", "Â¡Te has registrado con Ã©xito!");
+		return "redirect:/adulamstore/list";
 	}
 	
 	@GetMapping("/edit/{id}")
@@ -107,5 +108,10 @@ public class ClienteController {
 		model.addAttribute("categoria", listCategoria);
 		model.addAttribute("listProducto", listProductos);
 		return "adulamstore";
+	}
+	
+	@GetMapping("/new")
+	public String showForm(Model model) {
+		return "registerpersona";
 	}
 }

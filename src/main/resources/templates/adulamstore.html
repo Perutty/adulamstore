@@ -20,7 +20,7 @@
     </head>
 	<body>
 		<header>
-			<div id="top-header">
+			<div id="top-header" th:if="${cliente != null}">
 				<div class="container">
 					<ul class="header-links pull-left">
 						<li><a href="#"><i class="fa fa-phone"></i>+57 3132274023</a></li>
@@ -28,7 +28,19 @@
 						<li><a href="#"><i class="fa fa-map-marker"></i> CC Gran Bulevar L-120</a></li>
 					</ul>
 					<ul class="header-links pull-right">
-						<li><a href="#"><i class="fa fa-user-o"></i>Mi cuenta</a></li>
+						<h4 style="color:white">Bienvenido </h4><span style="color:white" th:text="${cliente}"></span>
+					</ul>
+				</div>
+			</div>
+			<div id="top-header" th:if="${cliente == null}">
+				<div class="container">
+					<ul class="header-links pull-left">
+						<li><a href="#"><i class="fa fa-phone"></i>+57 3132274023</a></li>
+						<li><a href="#"><i class="fa fa-envelope-o"></i> tecnosistemasadulam@email.com</a></li>
+						<li><a href="#"><i class="fa fa-map-marker"></i> CC Gran Bulevar L-120</a></li>
+					</ul>
+					<ul class="header-links pull-right">
+						<li><a th:href="@{/adulamstore/login}"><i class="fa fa-user-o"></i>Mi cuenta</a></li>
 					</ul>
 				</div>
 			</div>
