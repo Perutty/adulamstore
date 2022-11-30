@@ -12,6 +12,7 @@
  		<link rel="stylesheet" th:href="@{/css2/bootstrap.min.css}"/>
  		<link rel="stylesheet" th:href="@{/css2/slick.css}"/>
  		<link rel="stylesheet" th:href="@{/css2/slick-theme.css}"/>
+ 		<link rel="stylesheet" th:href="@{/css2/slider.css}"/>
 
  		<link rel="stylesheet" th:href="@{/css2/nouislider.min.css}"/>
  		<link rel="stylesheet" th:href="@{/css2/font-awesome.min.css}">
@@ -119,22 +120,24 @@
 		<div class="container-slider">
 			<div class="slider" id="slider">
 				<div class="slider_section">
-					<img th:src="@{https://i.imgur.com/BTImV57.jpg}">
+					<img style="width:58%" th:src="@{https://i.imgur.com/mnvHGZs.jpg}" class="slider_img">
+				</div>
+				<div class="slider_section">
+					<img th:src="@{https://i.imgur.com/wMEC6gO.jpg}" class="slider_img">
+				</div>
+				<div class="slider_section">
+					<img th:src="@{https://i.imgur.com/lFqLGNt.jpg}" class="slider_img">
+				</div>
+				<div class="slider_section">
+					<img style="width:52%" th:src="@{https://i.imgur.com/6hh2f5h.jpg}" class="slider_img">
 				</div>
 			</div>
+			<div class="slider_btn slider_btn-right" id="btn-right">&#62;</div>
+			<div class="slider_btn slider_btn-left" id="btn-left">&#60;</div>
 		</div>
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		<footer id="footer" style="position:absolute;bottom:0;width:100%">
+		<footer id="footer" style="position:relative;margin-top:10%;bottom:0;width:100%">
 				<div class="container">
 						<div class="col-md-12 text-center">
 							<span class="copyright" style="color:white">
@@ -145,6 +148,7 @@
 		</footer>
 
 		<!-- jQuery Plugins -->
+		<script th:src="@{/js2/slider.js}"></script>
 		<script th:src="@{/js2/jquery.min.js}"></script>
 		<script th:src="@{/js2/bootstrap.min.js}"></script>
 		<script th:src="@{/js2/slick.min.js}"></script>
