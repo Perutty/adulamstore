@@ -173,7 +173,7 @@
 									</div>
 									<div class="product-body">
 										<h3 class="product-name" th:text="${producto.nombre}"></h3>
-										<h4 class="product-price" th:text="${producto.precio}"></h4>
+										<h4 class="product-price" th:text="'$ '+${producto.precio}"></h4>
 										<div class="product-btns">
 											<button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">Ver detalles</span></button>
 										</div>
