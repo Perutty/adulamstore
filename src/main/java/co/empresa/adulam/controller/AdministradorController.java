@@ -24,8 +24,11 @@ public class AdministradorController {
 	
 	
 	@GetMapping("")
-	public String login(Model model) {
-		return "loginadmin";
+	public String login(HttpServletRequest request, HttpSession session, Model model) {
+		if(request.getSession().getAttribute("admin_id") != null) {
+			return "redirect:/producto/list";
+		}else
+			return "loginadmin";
 	}
 	
 	@PostMapping("/login")
@@ -54,5 +57,10 @@ public class AdministradorController {
 		administradorService.save(admin);
 		att.addFlashAttribute("accion", "Administrador registrado con éxito!");
 		return "redirect:/admin/";
+	}
+	
+	@GetMapping("/new")
+	public String showForm(Model model) {
+		return "registeradmin";
 	}
 }

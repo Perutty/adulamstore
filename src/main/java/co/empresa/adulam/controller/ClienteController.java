@@ -80,7 +80,8 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/edit/{id}")
-	public String editClient(@PathVariable("id") Integer id, Cliente cliente, Model model) {
+	public String editClient(HttpServletRequest request, HttpSession session,
+							@PathVariable("id") Integer id, Cliente cliente, Model model) {
 		if(id!=null) {
 			model.addAttribute("cliente", clienteService.get(id));
 		}else {
@@ -90,7 +91,10 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/list/{id}")
-	public String listProductId(@PathVariable("id") Integer id, Model model) {
+	public String listProductId(HttpServletRequest request, HttpSession session,
+								@PathVariable("id") Integer id,RedirectAttributes att, Model model) {
+		int c_id = (int)request.getSession().getAttribute("cliente_id");
+		Cliente cli = clienteService.get(c_id);
 		List<Producto> listProductos = productoService.getAll();
 		List<Categoria> listCategoria = categoriaService.getAll();
 		listMostrar.clear();
@@ -98,6 +102,7 @@ public class ClienteController {
 			if(producto.getId_categoria() == id)
 				listMostrar.add(producto);
 		});
+		model.addAttribute("cliente", cli.getNombre());
 		model.addAttribute("categoria", listCategoria);
 		model.addAttribute("listProducto", listMostrar);
 		return "adulamstore";

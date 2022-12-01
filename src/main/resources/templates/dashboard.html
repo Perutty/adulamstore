@@ -1,19 +1,15 @@
 <!DOCTYPE html>
-<html lang="en"	xmlns:th="http://www.thymeleaf.org" 
-				xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en"	xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="utf-8">
        <title>Adulam Store</title>
 	   <link rel="stylesheet" th:href="@{/css/custom.css}">
    	   <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-   		
       <link href="https://fonts.googleapis.com/css2?family=Poppins" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-      
   </head>
   <body>
 <div class="wrapper">
-     
 	  <div class="body-overlay"></div>
 	 	<div id="sidebar">
 	    <div class="sidebar-header">
@@ -234,14 +230,15 @@
 		
 </div>
 </div>
-
-			 <footer class="footer">
-				<div class="container-fluid">
-				   <div class="footer-in">
-					  <p class="mb-0">&copy 2021 Vishweb Design . All Rights Reserved.</p>
-				   </div>
+			 <footer id="footer" style="position:relative;margin-top:10%;bottom:0;width:100%">
+				<div class="container">
+						<div class="col-md-12 text-center">
+							<span class="copyright" style="color:white">
+								 Adulam Store © 2022     ||     Todos los derechos reservados
+							</span>
+						</div>
 				</div>
-			 </footer>
+		</footer>
 	  </div>
 </div>
 
@@ -250,7 +247,7 @@
    <script th:src="@{/js/bootstrap.min.js}"></script>
    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
    
-  <script type="text/javascript">
+  <script type="text/javascript" th:inline="javascript">
        $(document).ready(function(){
 	      $(".xp-menubar").on('click',function(){
 		    $("#sidebar").toggleClass('active');

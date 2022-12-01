@@ -4,12 +4,12 @@
 .container-slider{
 	width:90%;
 	max-width:650px;
-	height:390px;
+	height:400px;
     margin:auto;
     overflow:hidden;
     margin-top:3%;
 	position:relative;
-	box-shadow: 0 0 0 10px #000, 0 15px 50px;
+	box-shadow: 0 0 0 6px #000, 0 15px 50px;
 }
 
 .slider{
@@ -26,9 +26,9 @@
 
 .slider_img{
 	display:block;
-	margin:auto;
 	width:100%;
 	height:100%;
+	margin:auto;
 	object-fit:cover;
 }
 

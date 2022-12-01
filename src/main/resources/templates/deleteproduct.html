@@ -17,11 +17,13 @@
 	 
 	 <div id="sidebar">
 	    <div class="sidebar-header">
-		   <h3><span>Adulam Store - Dashboard Admin</span></h3>
+		   <form th:each="adm: ${admin}" action="#">
+		   	<h3><span>Adulam Store</span><br><span th:text="${adm.nombre}"></span></h3>
+		   </form>
 		</div>
 		<ul class="list-unstyled component m-0">
 		  <li class="active">
-		  <a href="#" class="dashboard"><i class="material-icons">inventory_2</i>Productos</a>
+		  <a th:href="@{/producto/list}" class="dashboard"><i class="material-icons">inventory_2</i>Productos</a>
 		  </li>
 		  
 		  <li class="dropdown">
@@ -145,17 +147,19 @@
       </div>
       <div style="text-align:center; margin-top:25%; margin-bottom:30%; padding-left:10%">
         <a th:href="@{/producto/delete/{id}(id=${producto.id})}" class="btn btn-success">Borrar</a>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <a type="button" class="btn btn-secondary" data-dismiss="modal" style="color:white" th:href="@{/producto/list}">Cancelar</a>
       </div>
       </form>
     </div>
-			 <footer class="footer">
-				<div class="container-fluid">
-				   <div class="footer-in">
-					  <p class="mb-0">&copy 2021 Vishweb Design . All Rights Reserved.</p>
-				   </div>
+			 <footer id="footer" style="position:relative;margin-top:20%;bottom:0;width:100%">
+				<div class="container">
+						<div class="col-md-12 text-center">
+							<span class="copyright" style="color:white">
+								 Adulam Store © 2022     ||     Todos los derechos reservados
+							</span>
+						</div>
 				</div>
-			 </footer>
+		</footer>
   </div>
 </div>
 

@@ -36,7 +36,9 @@ public class ProductoController {
 	
 	@GetMapping("/list")
 	public String listProduct(HttpServletRequest request, Model model) {
+		
 		int adm_id = (int)request.getSession().getAttribute("admin_id");
+		
 		Administrador adm = administradorService.get(adm_id);
 		List<Producto> listMostrar = productoService.getAll();
 		List<Categoria> listCategoria = categoriaService.getAll();
@@ -54,8 +56,11 @@ public class ProductoController {
 	}
 	
 	@GetMapping("/edit/{id}")
-	public String editProduct(@PathVariable("id") Integer id, Producto producto, Model model) {
+	public String editProduct(HttpServletRequest request, @PathVariable("id") Integer id, Producto producto, Model model) {
 		if(id!=null) {
+			int adm_id = (int)request.getSession().getAttribute("admin_id");
+			Administrador adm = administradorService.get(adm_id);
+			model.addAttribute("admin", adm);
 			model.addAttribute("producto", productoService.get(id));
 		}else {
 			model.addAttribute("producto", new Producto());
@@ -66,6 +71,9 @@ public class ProductoController {
 	@GetMapping("/askdelete/{id}")
 	public String ask(@PathVariable("id") Integer id, HttpServletRequest request, HttpSession session,
 			Model model) {
+		int adm_id = (int)request.getSession().getAttribute("admin_id");
+		Administrador adm = administradorService.get(adm_id);
+		model.addAttribute("admin", adm);
 		model.addAttribute("producto", productoService.get(id));
 		return "deleteproduct";
 	}
