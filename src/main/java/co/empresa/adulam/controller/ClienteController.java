@@ -45,7 +45,10 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/login")
-	public String login(Model model) {
+	public String login(HttpServletRequest request, HttpSession session, Model model) {
+		if(request.getSession().getAttribute("cliente_id") != null) {
+			return "redirect:/adulamstore/list";
+		}
 		return "login";
 	}
 	
@@ -69,7 +72,7 @@ public class ClienteController {
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request, HttpSession session,  Model model) {
 			request.getSession().invalidate();
-			return "redirect:/adulamstore/home";
+			return "redirect:/adulamstore";
 	}
 	
 	@PostMapping("/save")
@@ -109,9 +112,12 @@ public class ClienteController {
 	}
 	
 	@GetMapping("/list")
-	public String listProducto(Model model) {
+	public String listProducto(HttpServletRequest request, HttpSession session, Model model) {
+		int c_id = (int)request.getSession().getAttribute("cliente_id");
+		Cliente cli = clienteService.get(c_id);
 		List<Producto> listProductos = productoService.getAll();
 		List<Categoria> listCategoria = categoriaService.getAll();
+		model.addAttribute("cliente", cli.getNombre());
 		model.addAttribute("categoria", listCategoria);
 		model.addAttribute("listProducto", listProductos);
 		return "adulamstore";
