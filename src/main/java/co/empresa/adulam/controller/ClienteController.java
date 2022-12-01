@@ -96,31 +96,37 @@ public class ClienteController {
 	@GetMapping("/list/{id}")
 	public String listProductId(HttpServletRequest request, HttpSession session,
 								@PathVariable("id") Integer id,RedirectAttributes att, Model model) {
-		int c_id = (int)request.getSession().getAttribute("cliente_id");
-		Cliente cli = clienteService.get(c_id);
-		List<Producto> listProductos = productoService.getAll();
 		List<Categoria> listCategoria = categoriaService.getAll();
+		model.addAttribute("categoria", listCategoria);
+		List<Producto> listProductos = productoService.getAll();
+		if(request.getSession().getAttribute("cliente_id") != null) {
+			int c_id = (int)request.getSession().getAttribute("cliente_id");
+			Cliente cli = clienteService.get(c_id);
+			model.addAttribute("cliente", cli.getNombre());
+			return "adulamstore";
+		}
 		listMostrar.clear();
 		listProductos.forEach((producto)->{
 			if(producto.getId_categoria() == id)
 				listMostrar.add(producto);
 		});
-		model.addAttribute("cliente", cli.getNombre());
-		model.addAttribute("categoria", listCategoria);
 		model.addAttribute("listProducto", listMostrar);
 		return "adulamstore";
 	}
 	
 	@GetMapping("/list")
 	public String listProducto(HttpServletRequest request, HttpSession session, Model model) {
-		int c_id = (int)request.getSession().getAttribute("cliente_id");
-		Cliente cli = clienteService.get(c_id);
 		List<Producto> listProductos = productoService.getAll();
 		List<Categoria> listCategoria = categoriaService.getAll();
-		model.addAttribute("cliente", cli.getNombre());
 		model.addAttribute("categoria", listCategoria);
 		model.addAttribute("listProducto", listProductos);
-		return "adulamstore";
+		if(request.getSession().getAttribute("cliente_id") != null) {
+			int c_id = (int)request.getSession().getAttribute("cliente_id");
+			Cliente cli = clienteService.get(c_id);
+			model.addAttribute("cliente", cli.getNombre());
+			return "adulamstore";
+		}
+		else return "adulamstore";
 	}
 	
 	@GetMapping("/new")
