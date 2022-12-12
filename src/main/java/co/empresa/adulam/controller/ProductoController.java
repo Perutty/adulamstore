@@ -58,6 +58,8 @@ public class ProductoController {
 	@GetMapping("/edit/{id}")
 	public String editProduct(HttpServletRequest request, @PathVariable("id") Integer id, Producto producto, Model model) {
 		if(id!=null) {
+			List<Categoria> listCategoria = categoriaService.getAll();
+			model.addAttribute("categoria", listCategoria);
 			int adm_id = (int)request.getSession().getAttribute("admin_id");
 			Administrador adm = administradorService.get(adm_id);
 			model.addAttribute("admin", adm);
