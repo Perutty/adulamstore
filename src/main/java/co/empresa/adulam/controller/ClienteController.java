@@ -134,4 +134,9 @@ public class ClienteController {
 	public String showForm(Model model) {
 		return "registerpersona";
 	}
+	
+	@GetMapping("/pagar")
+	public String formInvoice(Model model) {
+		return "invoiceform";
+	}
 }

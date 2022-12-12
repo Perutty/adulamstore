@@ -524,7 +524,7 @@ textarea.input {
   font-size: 12px;
 }
 
-.header-ctn>div>a>.qty {
+.header-ctn>div>a>.quantity {
   position: absolute;
   right: 15px;
   top: -10px;
