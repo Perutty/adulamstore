@@ -156,7 +156,9 @@
 						<div class="row">
 							<form th:each="producto: ${listProducto}" action="#">
 							<!-- product -->
-							<div class="col-md-4 col-xs-6">
+							<div th:if="${producto.cantidad == 0}">
+							</div>
+							<div class="col-md-4 col-xs-6" th:if="${producto.cantidad > 0}">
 								<div class="product">
 									<div class="product-img" style="text-align:center">
 										<img th:src="${producto.imagen}" style="width:50%;height:150px;">

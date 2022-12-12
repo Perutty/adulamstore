@@ -21,7 +21,7 @@ public class ProductoServiceImpl extends GenericServiceImpl<Producto, Integer> i
 	}
 	
 	@Override
-	public Producto select(String marca) {
-		return productoRepository.findByMarca(marca);
+	public Producto select(String ref) {
+		return productoRepository.findByRef(ref);
 	}
 }

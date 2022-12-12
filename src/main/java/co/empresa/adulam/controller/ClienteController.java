@@ -123,8 +123,9 @@ public class ClienteController {
 		if(request.getSession().getAttribute("cliente_id") != null) {
 			int c_id = (int)request.getSession().getAttribute("cliente_id");
 			Cliente cli = clienteService.get(c_id);
-			model.addAttribute("cliente", cli.getNombre());
+			model.addAttribute("cliente", cli.getNombre());	
 			return "adulamstore";
+			
 		}
 		else return "adulamstore";
 	}

@@ -39,11 +39,14 @@ public class Producto {
 	@Column
 	private String imagen;
 	
+	@Column
+	private String ref;
+	
 	
 	public Producto(){};
 	
-	public Producto(String nombre) {
-		this.nombre = nombre;
+	public Producto(String ref) {
+		this.ref = ref;
 	};
 
 }
