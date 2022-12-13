@@ -34,9 +34,6 @@ public class Producto {
 	private Integer id_categoria;
 	
 	@Column
-	private Integer id_detallefactura;
-	
-	@Column
 	private String imagen;
 	
 	@Column

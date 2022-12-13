@@ -2009,6 +2009,17 @@ textarea.input {
   color: #D10024;
 }
 
+.buttonAction{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+.buttonAction button{
+	width:15%;
+	margin-right:5%;
+	margin-top:5%;
+}
 .detalleProductos{
 	display:flex;
 	justify-content:center;
@@ -2016,6 +2027,15 @@ textarea.input {
 	margin:auto;
 	width:80%;
 }
+
+.totalPagar{
+	display:flex;
+	justify-content:right;
+	align-items:center;
+	margin-right:30%;
+	width:80%;
+}
+
 /*=========================================================
 	11 -> FOOTER
 ===========================================================*/

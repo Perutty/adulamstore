@@ -76,7 +76,7 @@
 										<span>Carrito</span>
 										<div class="quantity">0</div>
 									</a>
-									<div class="cart-dropdown">
+									 <div class="cart-dropdown">
 										<div class="cart-list">
 										</div>
 										<div class="cart-summary">
@@ -86,7 +86,7 @@
 											<a href="#" id="vaciar">Vaciar Carrito</a>
 											<a href="#" id="pagar">Pagar  <i class="fa fa-arrow-circle-right"></i></a>
 										</div>
-									</div>
+									 </div>
 								</div>
 							</div>
 						</div>
@@ -155,7 +155,7 @@
 					<div id="store" class="col-md-9">
 						<!-- store products -->
 						<div class="row">
-							<form th:each="producto: ${listProducto}" action="#">
+							<form th:each="producto: ${listProducto}">
 							<!-- product -->
 							<div th:if="${producto.cantidad == 0}">
 							</div>
@@ -210,7 +210,6 @@
 		<script th:src="@{/js2/slick.min.js}"></script>
 		<script th:src="@{/js2/nouislider.min.js}"></script>
 		<script th:src="@{/js2/jquery.zoom.min.js}"></script>
-		<script th:src="@{/js2/main.js}"></script>
 
 	</body>
 </html>

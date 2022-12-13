@@ -10,15 +10,28 @@ import javax.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table (name="categoria")
+@Table(name="detallefactura")
 @Data
-public class Categoria {
+public class DetalleFactura {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column
-	private String nombre;
+	private Integer cantidad;
+	
+	@Column
+	private Integer subtotal;
+	
+	@Column
+	private String name_product;
+	
+	@Column
+	private Integer id_factura;
+	
+	public DetalleFactura(){};
+	
+	
 
 }

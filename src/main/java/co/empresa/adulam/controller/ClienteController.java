@@ -54,7 +54,7 @@ public class ClienteController {
 	
 	@PostMapping("/singin")
 	public String validate(RedirectAttributes att, @RequestParam String email, @RequestParam String password, 
-			HttpServletRequest request, HttpSession session,  Model model) {
+							HttpServletRequest request, HttpSession session,  Model model) {
 		Cliente cliente = clienteService.select(email, password);
 		
 		if(cliente != null)
@@ -80,7 +80,7 @@ public class ClienteController {
 	public String insertClient(RedirectAttributes att, Cliente cliente, Model model) {
 		clienteService.save(cliente);
 		att.addFlashAttribute("accion", "¡Te has registrado con éxito!");
-		return "redirect:/adulamstore/list";
+		return "redirect:/adulamstore/login";
 	}
 	
 	@GetMapping("/edit/{id}")
@@ -92,18 +92,6 @@ public class ClienteController {
 			model.addAttribute("cliente", new Producto());
 		}
 		return "editcliente";
-	}
-	
-	@GetMapping("/topay")
-	public String formInvoice(HttpServletRequest request, HttpSession session, Model model) {
-			if(request.getSession().getAttribute("cliente_id") == null) {
-				return "redirect:/adulamstore/login";
-			}else {
-				int c_id = (int)request.getSession().getAttribute("cliente_id");
-				Cliente cli = clienteService.get(c_id);
-				model.addAttribute("cliente", cli.getNombre());
-				return "invoiceform";
-			}
 	}
 	
 	@GetMapping("/list/{id}")

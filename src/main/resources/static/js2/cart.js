@@ -1,4 +1,4 @@
-const cartInfo = document.querySelector('.product-widget');
+const cartInfo = document.querySelector('.cart-dropdown');
 const rowProduct = document.querySelector('.cart-list');
 const productsList = document.querySelector('#store');
 const valorTotal = document.querySelector('.subtotal');
@@ -7,23 +7,32 @@ const countCart = document.querySelector('.quantity');
 const vaciarCart = document.querySelector('#vaciar');
 const pagarCart = document.querySelector('#pagar');
 const activar = document.querySelector('#activar');
+const borrarP = document.querySelector('.detalleProductos');
+const totalPagar = document.querySelector('.total');
+
 
 //Variable de arreglo de productos
 let allProducts = [];
 
-
 if(activar){
-	activar.addEventListener('click',showDetails);
+document.addEventListener('DOMContentLoaded', () => {
+		if(localStorage.getItem('allProducts')){
+       		 allProducts = JSON.parse(localStorage.getItem('allProducts'));
+       	 	 showDetails();
+       	 	 showTotal();
+       	 	 showHTML();
+        }
+});
 }
 
-
+if(cartInfo){
 document.addEventListener('DOMContentLoaded', () => {
 		if(localStorage.getItem('allProducts')){
        		 allProducts = JSON.parse(localStorage.getItem('allProducts'));
        	 	 showHTML();
         }
-   			document.querySelector('#activar').click(showDetails);
 });
+}
 
 if(vaciar){
 	vaciarCart.addEventListener('click', e =>{
@@ -35,44 +44,53 @@ if(vaciar){
 
 if(pagar){
 	pagarCart.addEventListener('click', e =>{
-		let userId = '<%=request.getSession().getAttribute("cliente_nombre")%>';
 		if(allProducts.length > 0){
-			if(userId !== null){
-				window.location.href = "/adulamstore/topay";
-				showHTML();
-	 		}
-	 		else{
-	 			window.location.href = "/adulamstore/login";
-			}
+				window.location.href = "/detallefactura/topay";
+				showDetails();
 		}else{
 			alert("El carrito de compras está vacío");
 		}
 	});
 }
 
+if(borrarP){
+	borrarP.addEventListener('click', e =>{
+		if(e.target.classList.contains('borrar')){
+		
+			const product = e.target.parentElement.parentElement.parentElement;
+			const title = product.querySelector('tr').textContent;
+		
+			allProducts = allProducts.filter(product => product.title !== title);
+			showDetails();
+		}
+	});
+}
+
+
 function showDetails (){
 	allProducts.forEach(product => {
 		const containerDetails = document.querySelector('#tablax tbody');
 		if(containerDetails){
 			const row =  document.createElement('tr');
-			row.innerHTML = `
-							 <td><img src="${product.img}"/></td>
+			row.innerHTML += `
+							 <td style="width:20%"><img src="${product.img}" style="width:30%"/></td>
 							 <td>${product.title}</td>
 							 <td>${product.quantity}</td>
-							 <td>${product.price}</td>
+							 <td>$ ${parseInt(product.price.slice(1)*product.quantity)}</td>
 							 <td>
-								 <button class="delete"><i class="fa fa-close"></i></button>
+								 <button class="borrar"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+								 </button>
 							 </td>
-							 </tr>
 						  
 		`;
-	  		containerDetails.appendChild(row);	
+	  		containerDetails.appendChild(row);
 	  	}
 	});
-};
+}
+
 
 if(productsList){
-	productsList.addEventListener('click', e => {
+productsList.addEventListener('click', e => {
 		if(e.target.classList.contains('add-to-cart-btn')){
 			const product = e.target.parentElement.parentElement;
 		
@@ -121,13 +139,10 @@ const showHTML = () => {
 	
 	//limpíarHTML
 	rowProduct.innerHTML= '';
-	
 	let total = 0;
 	let totalOfProducts = 0;
 	allProducts.forEach(product => {
 		const containerProduct = document.createElement('div');
-		containerProduct.classList.add('product-widget');
-		
 		containerProduct.innerHTML = `
 		<div class="product-widget">
 			<div class="product-img">
@@ -143,10 +158,19 @@ const showHTML = () => {
 	  
 	  rowProduct.append(containerProduct);
 	  total = total+parseInt(product.quantity * product.price.slice(1));
-	  totalOfProducts = totalOfProducts + product.quantity;
+	  totalOfProducts = product.quantity;
 	  localStorage.setItem('allProducts', JSON.stringify(allProducts));
 	});
 		countCart.innerText = allProducts.length;
 		valorTotal.innerText = `Subtotal: $ ${total}`;
 		countProduct.innerText = totalOfProducts;
-	};
+};
+
+const showTotal =() => {
+	let pagar = 0;
+	allProducts.forEach(product => {
+		pagar = pagar+parseInt(product.quantity * product.price.slice(1));;
+		totalPagar.innerText = `El total a pagar es: $ ${pagar}`;
+		console.log(pagar);
+	});
+}

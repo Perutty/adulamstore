@@ -13,7 +13,6 @@
  		<link rel="stylesheet" th:href="@{/css2/bootstrap.min.css}"/>
  		<link rel="stylesheet" th:href="@{/css2/slick.css}"/>
  		<link rel="stylesheet" th:href="@{/css2/slick-theme.css}"/>
-
  		<link rel="stylesheet" th:href="@{/css2/nouislider.min.css}"/>
  		<link rel="stylesheet" th:href="@{/css2/font-awesome.min.css}">
  		<link rel="stylesheet" th:href="@{/css2/style.css}"/>
@@ -112,9 +111,17 @@
 						  </tbody>
 					   </table>
 		</div>
+		<div class="totalPagar">
+			<h5 class="total"></h5>
+		</div>
+		
+		<div class="buttonAction">
+			<button type="button" class="btn btn-info">Apartar</button>
+			<button type="button" class="btn btn-success">Pagar</button>
+		</div>
 
 
-		<footer id="footer" style="position:absolute;bottom:0;width:100%">
+		<footer id="footer" style="position:relative;bottom:-100px;width:100%">
 				<div class="container">
 						<div class="col-md-12 text-center">
 							<span class="copyright" style="color:white">
@@ -131,7 +138,6 @@
 		<script th:src="@{/js2/slick.min.js}"></script>
 		<script th:src="@{/js2/nouislider.min.js}"></script>
 		<script th:src="@{/js2/jquery.zoom.min.js}"></script>
-		<script th:src="@{/js2/main.js}"></script>
 
 	</body>
 </html>

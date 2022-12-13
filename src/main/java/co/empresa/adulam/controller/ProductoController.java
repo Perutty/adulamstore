@@ -51,7 +51,6 @@ public class ProductoController {
 	
 	@PostMapping("/save")
 	public String insert(RedirectAttributes att, Producto producto, Model model) {
-		List<Producto> listMostrar = productoService.getAll();
 		productoService.save(producto);
 		att.addFlashAttribute("accion", "¡Producto registrado con éxito!");
 		return "redirect:/producto/list";
