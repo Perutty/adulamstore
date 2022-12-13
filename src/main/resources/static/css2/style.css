@@ -2009,6 +2009,13 @@ textarea.input {
   color: #D10024;
 }
 
+.detalleProductos{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	margin:auto;
+	width:80%;
+}
 /*=========================================================
 	11 -> FOOTER
 ===========================================================*/

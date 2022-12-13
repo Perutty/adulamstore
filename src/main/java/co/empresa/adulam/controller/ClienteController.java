@@ -60,6 +60,7 @@ public class ClienteController {
 		if(cliente != null)
 		{
 			request.getSession().setAttribute("cliente_id", cliente.getId());
+			request.getSession().setAttribute("cliente_nombre", cliente.getNombre());
 			model.addAttribute("cliente", cliente);
 			att.addFlashAttribute("cliente", cliente.getNombre());
 			return "redirect:/adulamstore/list";
@@ -91,6 +92,18 @@ public class ClienteController {
 			model.addAttribute("cliente", new Producto());
 		}
 		return "editcliente";
+	}
+	
+	@GetMapping("/topay")
+	public String formInvoice(HttpServletRequest request, HttpSession session, Model model) {
+			if(request.getSession().getAttribute("cliente_id") == null) {
+				return "redirect:/adulamstore/login";
+			}else {
+				int c_id = (int)request.getSession().getAttribute("cliente_id");
+				Cliente cli = clienteService.get(c_id);
+				model.addAttribute("cliente", cli.getNombre());
+				return "invoiceform";
+			}
 	}
 	
 	@GetMapping("/list/{id}")
@@ -135,8 +148,4 @@ public class ClienteController {
 		return "registerpersona";
 	}
 	
-	@GetMapping("/pagar")
-	public String formInvoice(Model model) {
-		return "invoiceform";
-	}
 }

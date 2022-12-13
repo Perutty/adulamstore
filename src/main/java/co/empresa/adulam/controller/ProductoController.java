@@ -1,6 +1,5 @@
 package co.empresa.adulam.controller;
 
-import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,9 +34,10 @@ public class ProductoController {
 	@Autowired
 	private AdministradorService administradorService;
 	
+
+	
 	@GetMapping("/list")
 	public String listProduct(HttpServletRequest request, Model model) {
-		
 		int adm_id = (int)request.getSession().getAttribute("admin_id");
 		
 		Administrador adm = administradorService.get(adm_id);
@@ -51,6 +51,7 @@ public class ProductoController {
 	
 	@PostMapping("/save")
 	public String insert(RedirectAttributes att, Producto producto, Model model) {
+		List<Producto> listMostrar = productoService.getAll();
 		productoService.save(producto);
 		att.addFlashAttribute("accion", "¡Producto registrado con éxito!");
 		return "redirect:/producto/list";
