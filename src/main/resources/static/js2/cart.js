@@ -7,18 +7,27 @@ const countCart = document.querySelector('.quantity');
 const vaciarCart = document.querySelector('#vaciar');
 const pagarCart = document.querySelector('#pagar');
 const activar = document.querySelector('#activar');
-const borrarP = document.querySelector('.detalleProductos');
+const bottonAction = document.querySelector('.detalleProductos');
 const totalPagar = document.querySelector('.total');
 const containerDetails = document.querySelector('#tablax tbody');
+const botonPagar = document.querySelector('#irpagar');
 
 
 //Variable de arreglo de productos
 let allProducts = [];
+let productosFactura = [];
 
 if(activar || cartInfo){
 document.addEventListener('DOMContentLoaded', () => {
 		if(localStorage.getItem('allProducts')){
        		 allProducts = JSON.parse(localStorage.getItem('allProducts'));
+       	 	 showDetails();
+       	 	 showTotal();
+       	 	 showHTML();
+        }
+        if(localStorage.getItem('productoFactura')){
+       		 productosFactura = JSON.parse(localStorage.getItem('productoFactura'));
+       		 botonPagar.innerText = `Pagar (${productosFactura.length})`;
        	 	 showDetails();
        	 	 showTotal();
        	 	 showHTML();
@@ -45,22 +54,63 @@ if(pagar){
 	});
 }
 
-if(borrarP){
-	borrarP.addEventListener('click', e =>{
+if(bottonAction){
+	bottonAction.addEventListener('click', e =>{
 		if(e.target.classList.contains('delete')){
 		
 			const product = e.target.parentElement.parentElement;
 			const title = product.querySelector('#na').textContent;
 		
 			allProducts = allProducts.filter(product => product.title !== title);
+			productosFactura.forEach(prod =>{
+				if(title === prod.title){
+					productosFactura = productosFactura.filter(producto => producto.title !== title);
+					botonPagar.innerText = `Pagar (${productosFactura.length})`;
+				}
+			});
+			botonPagar.innerText = `Pagar (${productosFactura.length})`;
+			if(allProducts.length === 0)
+			{
+				localStorage.clear();
+				productosFactura.length=0;
+			}
 			showDetails();
 			showTotal();
 			showHTML();
 		}
-			if(totalOfProducts === 0){
-				allProducts.length = 0;
-				localStorage.clear();
+	});
+}
+
+if(bottonAction){
+	bottonAction.addEventListener('click', e =>{
+		if(e.target.classList.contains('add')){
+			const product = e.target.parentElement.parentElement;
+			const infoProduct = {
+				title: product.querySelector('#na').textContent,
+				quantity: product.querySelector('#cantidad').textContent,
+				price: product.querySelector('#precio').textContent,
+			};
+			const exits = productosFactura.some(product => product.title === infoProduct.title);
+			if(exits){
+				const products = productosFactura.map(product => {
+					if(product.title === infoProduct.title){
+						return product
+					}else{
+						productosFactura = [...productosFactura, infoProduct];
+						return product
+					}
+				})
+				productosFactura = [...products];
+			}else{
+				
+				productosFactura = [...productosFactura, infoProduct];
 			}
+			localStorage.setItem('productoFactura', JSON.stringify(productosFactura));
+			botonPagar.innerText = `Pagar (${productosFactura.length})`;
+			showDetails();
+			showTotal();
+			showHTML();
+		}
 	});
 }
 
@@ -71,12 +121,14 @@ function showDetails (){
 		if(containerDetails){
 			const row =  document.createElement('tr');
 			row.innerHTML += `
-							 <td style="width:15%"><img src="${product.img}" style="width:70%"/></td>
+							 <td style="width:15%" id="img"><img src="${product.img}" style="width:70%"/></td>
 							 <td id="na">${product.title}</td>
-							 <td>${product.quantity}</td>
-							 <td>$ ${parseInt(product.price.slice(1)*product.quantity)}</td>
+							 <td id="cantidad">${product.quantity}</td>
+							 <td id="precio">$ ${parseInt(product.price.slice(1)*product.quantity)}</td>
 							 <td>
-								 <button class="delete"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+								 <button id="borrar" class="delete" style="background-color:red;color:white"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+								 </button>
+								 <button id="add" class="add" style="color:white;background-color:green"><i class="material-icons" data-toggle="tooltip" title="Approved">&#xE876;</i>
 								 </button>
 							 </td>
 						  
@@ -117,6 +169,7 @@ if(productsList){
 	
 	});
 }
+
 
 if(rowProduct){
 	rowProduct.addEventListener('click', e =>{
