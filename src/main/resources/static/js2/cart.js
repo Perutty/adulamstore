@@ -17,14 +17,9 @@ const botonPagar = document.querySelector('#irpagar');
 let allProducts = [];
 let productosFactura = [];
 
-if(activar || cartInfo){
+if(activar){
 document.addEventListener('DOMContentLoaded', () => {
-		if(localStorage.getItem('allProducts')){
-       		 allProducts = JSON.parse(localStorage.getItem('allProducts'));
-       	 	 showDetails();
-       	 	 showTotal();
-       	 	 showHTML();
-        }
+		
         if(localStorage.getItem('productoFactura')){
        		 productosFactura = JSON.parse(localStorage.getItem('productoFactura'));
        		 botonPagar.innerText = `Pagar (${productosFactura.length})`;
@@ -32,7 +27,18 @@ document.addEventListener('DOMContentLoaded', () => {
        	 	 showTotal();
        	 	 showHTML();
         }
-});
+	});
+}
+
+if(rowProduct){
+document.addEventListener('DOMContentLoaded', () => {
+	if(localStorage.getItem('allProducts')){
+       		 allProducts = JSON.parse(localStorage.getItem('allProducts'));
+       	 	 showDetails();
+       	 	 showTotal();
+       	 	 showHTML();
+       }
+   });
 }
 
 if(vaciar){
@@ -51,6 +57,7 @@ if(pagar){
 		}else{
 			alert("El carrito de compras está vacío");
 		}
+				showHTML();
 	});
 }
 

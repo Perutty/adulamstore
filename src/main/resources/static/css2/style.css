@@ -2023,7 +2023,7 @@ textarea.input {
 .detalleProductos{
 	display:flex;
 	justify-content:center;
-	align-items:center;
+	align-items:center	;
 	margin:auto;
 	width:80%;
 }
