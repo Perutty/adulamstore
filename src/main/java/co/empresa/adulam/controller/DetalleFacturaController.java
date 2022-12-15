@@ -1,5 +1,6 @@
 package co.empresa.adulam.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -116,13 +117,17 @@ public class DetalleFacturaController {
 	@GetMapping("/list/{id}")
 	public String listDetalle(@PathVariable("id") Integer id, HttpServletRequest request, Model model) {
 		int adm_id = (int)request.getSession().getAttribute("admin_id");
-		
+		List<DetalleFactura> mostrar = new ArrayList();
 		Administrador adm = administradorService.get(adm_id);
 		List<Producto> listProductos = productoService.getAll();
 		List<Categoria> listCategoria = categoriaService.getAll();
 		List<DetalleFactura> detalles = detalleFacturaService.getAll();
 		List<Factura> factura = facturaService.getAll();
-		model.addAttribute("detalle", detalles);
+		detalles.forEach((detal)->{
+			if(detal.getId_factura() == id)
+				mostrar.add(detal);
+				model.addAttribute("detalle", mostrar);
+		});
 		model.addAttribute("facturas", factura);
 		model.addAttribute("admin", adm);
 		return "dashboarddetalle";

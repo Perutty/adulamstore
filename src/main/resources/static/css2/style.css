@@ -2036,6 +2036,19 @@ textarea.input {
 	width:80%;
 }
 
+.pqrs{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+.pqrs form{
+	width: 40%;
+}
+
+.pqrs form input{
+	margin-top:2%;
+}
+
 /*=========================================================
 	11 -> FOOTER
 ===========================================================*/

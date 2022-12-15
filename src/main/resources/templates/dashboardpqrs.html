@@ -42,7 +42,7 @@
 		  </ul>
 		  </li>
 		  <li class="dropdown">
-		  <a th:href="@{/pqrs/list}" class="list-unstyled component m-0">
+		  <a href="#homeSubmenu7" class="list-unstyled component m-0">
 		  <i class="material-icons">content_copy</i>PQRS
 		  </a>
 		  </li>		
@@ -131,29 +131,25 @@
 					   <table class="table table-striped table-hover" id="tablax">
 					      <thead>
 						     <tr>
-							 <th>Referencia</th>
-							 <th>Marca</th>
-							 <th>Precio</th>
+							 <th>#Pqrs</th>
 							 <th>Nombre</th>
-							 <th>Cantidad</th>
-							 <th>Acciones</th>
+							 <th>Teléfono</th>
+							 <th>Email</th>
+							 <th>Asunto</th>
+							 <th>Mensaje</th>
+							 <th>Fecha Creación</th>
 							 </tr>
 						  </thead>
 						  
-						  <tbody th:each="product: ${producto}">
+						  <tbody th:each="pqrs: ${pqrs}">
 						     <tr>
-							 <td th:text="${product.ref}"></td>
-							 <td th:text="${product.marca}"></td>
-							 <td th:text="${product.precio}"></td>
-							 <td th:text="${product.nombre}"></td>
-							 <td th:text="${product.cantidad}"></td>
-							 <td>
-							    <a th:href="@{/producto/edit/{id}(id=${product.id})}">
-							   <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-							   </a>
-							   <a th:href="@{/producto/askdelete/{id}(id=${product.id})}">
-							   <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-							   </a>
+							 <td th:text="${pqrs.id}"></td>
+							 <td th:text="${pqrs.nombre}"></td>
+							 <td th:text="${pqrs.telefono}"></td>
+							 <td th:text="${pqrs.email}"></td>
+							 <td th:text="${pqrs.asunto}"></td>
+							 <td th:text="${pqrs.mensaje}"></td>
+							 <td th:text="${pqrs.fechacreacion}" style="font-size:12px"></td>
 							 </tr>
 						  </tbody>
 					   </table>

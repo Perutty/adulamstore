@@ -42,7 +42,7 @@
 		  </ul>
 		  </li>
 		  <li class="dropdown">
-		  <a href="#homeSubmenu7" class="list-unstyled component m-0">
+		  <a th:href="@{/pqrs/list}" class="list-unstyled component m-0">
 		  <i class="material-icons">content_copy</i>PQRS
 		  </a>
 		  </li>		
@@ -148,6 +148,9 @@
 							 <td>
 							    <a th:href="@{/detallefactura/list/{id}(id=${factura.id})}">
 							   <i class="material-icons" data-toggle="tooltip" title="View">&#xE8f4;</i>
+							   </a>
+							   <a th:href="@{/factura/export/all/{id}(id=${factura.id})}">
+							   <i class="material-icons" data-toggle="tooltip" title="View">&#xE873;</i>
 							   </a>
 							 </tr>
 						  </tbody>
