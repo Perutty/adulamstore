@@ -1,5 +1,8 @@
 @charset "ISO-8859-1";
 
+body{
+	background-image: url("https://i.imgur.com/JPugBvB.jpg");
+}
 .btn-color {
     background-color: #0e1c36;
     color: #fff;
