@@ -1,4 +1,3 @@
-const cartInfo = document.querySelector('.cart-dropdown');
 const rowProduct = document.querySelector('.cart-list');
 const productsList = document.querySelector('#store');
 const valorTotal = document.querySelector('.subtotal');
@@ -19,7 +18,6 @@ let productosFactura = [];
 
 if(activar){
 document.addEventListener('DOMContentLoaded', () => {
-		
         if(localStorage.getItem('productoFactura')){
        		 productosFactura = JSON.parse(localStorage.getItem('productoFactura'));
        		 botonPagar.innerText = `Pagar (${productosFactura.length})`;
@@ -30,16 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 }
 
-if(rowProduct){
 document.addEventListener('DOMContentLoaded', () => {
 	if(localStorage.getItem('allProducts')){
        		 allProducts = JSON.parse(localStorage.getItem('allProducts'));
-       	 	 showDetails();
+       		 showDetails();
        	 	 showTotal();
        	 	 showHTML();
        }
-   });
-}
+ });
 
 if(vaciar){
 	vaciarCart.addEventListener('click', e =>{
@@ -52,13 +48,27 @@ if(vaciar){
 if(pagar){
 	pagarCart.addEventListener('click', e =>{
 		if(allProducts.length > 0){
-				window.location.href = "/detallefactura/topay";
-				showDetails();
-		}else{
+			window.location.href = '/detallefactura/confirmar/';
+			showDetails();
+		}
+		else{
 			alert("El carrito de compras está vacío");
 		}
 				showHTML();
 	});
+}
+
+if(botonPagar){
+	botonPagar.addEventListener('click', e =>{
+			productosFactura = JSON.parse(localStorage.getItem('productoFactura'));
+				let total = 0;
+					productosFactura.forEach(prod =>{
+					total = total+parseInt(prod.quantity * prod.price.slice(1));
+					window.location.href = '/detallefactura/topay/'+prod.title+'/'+prod.quantity+'/'+prod.price.slice(1)+'/'+total+'';
+			})
+				localStorage.clear();
+		})
+	
 }
 
 if(bottonAction){
@@ -138,7 +148,6 @@ function showDetails (){
 								 <button id="add" class="add" style="color:white;background-color:green"><i class="material-icons" data-toggle="tooltip" title="Approved">&#xE876;</i>
 								 </button>
 							 </td>
-						  
 		`;
 	  		containerDetails.appendChild(row);
 	  	}
@@ -171,12 +180,11 @@ if(productsList){
 				
 				allProducts = [...allProducts, infoProduct];
 			}
-			showHTML();
 		}
+		showHTML();
 	
 	});
 }
-
 
 if(rowProduct){
 	rowProduct.addEventListener('click', e =>{
@@ -227,7 +235,7 @@ function showTotal (){
 	totalPagar.innerHTML='';
 	let pagar = 0;
 	allProducts.forEach(product => {
-		pagar = pagar+parseInt(product.quantity * product.price.slice(1));;
+		pagar = pagar+parseInt(product.quantity * product.price.slice(1));
 		totalPagar.innerText = `El total a pagar es: $ ${pagar}`;
 	});
 }

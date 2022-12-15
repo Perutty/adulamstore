@@ -34,7 +34,6 @@ public class ProductoController {
 	@Autowired
 	private AdministradorService administradorService;
 	
-
 	
 	@GetMapping("/list")
 	public String listProduct(HttpServletRequest request, Model model) {

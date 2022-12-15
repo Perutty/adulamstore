@@ -1,5 +1,7 @@
 package co.empresa.adulam.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,32 +9,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 import lombok.Data;
 
 @Entity
-@Table(name="detallefactura")
+@Table(name="factura")
 @Data
-public class DetalleFactura {
+public class Factura {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	
 	@Column
-	private Integer cantidad;
+	@DateTimeFormat(iso = ISO.DATE)
+	private Date fechacreacion;
 	
 	@Column
-	private Integer subtotal;
+	private Integer id_cliente;
 	
 	@Column
-	private Integer id_factura;
+	private Integer totalapagar;
 	
-	@Column
-	private String name_product;
+	public Factura(){};
 	
-	
-	public DetalleFactura(){};
-	
-	
+	public Factura (Integer id){
+		this.id = id;
+	};
 
 }

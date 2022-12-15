@@ -131,29 +131,17 @@
 					   <table class="table table-striped table-hover" id="tablax">
 					      <thead>
 						     <tr>
-							 <th>Referencia</th>
-							 <th>Marca</th>
-							 <th>Precio</th>
-							 <th>Nombre</th>
-							 <th>Cantidad</th>
-							 <th>Acciones</th>
+							 <th style="width:80%">Nombre Producto</th>
+							 <th style="width:30%">Cantidad</th>
+							 <th>Subtotal</th>
 							 </tr>
 						  </thead>
 						  
-						  <tbody th:each="product: ${producto}">
+						  <tbody th:each="detalle: ${detalle}">
 						     <tr>
-							 <td th:text="${product.ref}"></td>
-							 <td th:text="${product.marca}"></td>
-							 <td th:text="${product.precio}"></td>
-							 <td th:text="${product.nombre}"></td>
-							 <td th:text="${product.cantidad}"></td>
-							 <td>
-							    <a th:href="@{/producto/edit/{id}(id=${product.id})}">
-							   <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-							   </a>
-							   <a th:href="@{/producto/askdelete/{id}(id=${product.id})}">
-							   <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-							   </a>
+							 <td th:text="${detalle.name_product}"></td>
+							 <td th:text="${detalle.cantidad}"></td>
+							 <td th:text="${detalle.subtotal}" style="font-size:17px"></td>
 							 </tr>
 						  </tbody>
 					   </table>

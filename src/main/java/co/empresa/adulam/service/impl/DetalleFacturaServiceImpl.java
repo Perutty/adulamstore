@@ -20,6 +20,5 @@ public class DetalleFacturaServiceImpl extends GenericServiceImpl<DetalleFactura
 		return detalleFacturaRepository;
 	}
 	
-	
 
 }

@@ -29,8 +29,10 @@ public class ClienteController {
 	
 	@Autowired
 	private ClienteService clienteService;
+	
 	@Autowired
 	private ProductoService productoService;
+	
     @Autowired
     private CategoriaService categoriaService;
 	
@@ -89,7 +91,7 @@ public class ClienteController {
 		if(id!=null) {
 			model.addAttribute("cliente", clienteService.get(id));
 		}else {
-			model.addAttribute("cliente", new Producto());
+			model.addAttribute("cliente", new Cliente());
 		}
 		return "editcliente";
 	}

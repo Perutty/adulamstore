@@ -6,5 +6,5 @@ import co.empresa.adulam.model.Producto;
 
 public interface ProductoRepository extends CrudRepository<Producto, Integer> {
 
-	public abstract Producto findByRef(String Ref);
+	public abstract Producto findByNombre(String nombre);
 }
